@@ -7,7 +7,7 @@ function Header () {
     const { colorMode, toggleColorMode } = useColorMode()
 
     return (
-        <Box bg="teal.400" p={4}>
+        <Box bg="teal.400" p={6}>
             <Flex justifyContent="center">
                 <HStack spacing="24px">
                     <Link to="/">
@@ -19,7 +19,7 @@ function Header () {
                     onClick={toggleColorMode}
                     />
                 </HStack>
-            </Flex>
+            </Flex> 
         </Box>
     )
 }
