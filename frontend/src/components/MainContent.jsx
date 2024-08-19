@@ -2,22 +2,19 @@ import React from 'react';
 import {
     Table,
     Thead,
-    Tbody,
-    Tfoot,
     Tr,
     Th,
-    Td,
-    TableCaption,
     TableContainer,
 } from "@chakra-ui/react";
 
 
 function MainContent ({ overflowY = "scroll", ...props }) {
+
     return (
         <TableContainer 
-        m={10}
-        h={750}
-        border="2px solid lightgray"
+        m={5}
+        h="65vh"
+        border="1px solid"
         borderRadius="8px"
         boxShadow="md"
         >
