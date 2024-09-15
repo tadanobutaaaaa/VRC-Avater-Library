@@ -2,9 +2,6 @@ package main
 
 import (
 	"context"
-	"errors"
-	"fmt"
-	"VRC-Avater-Library/backend"
 )
 
 // App struct
@@ -24,11 +21,3 @@ func (a *App) startup(ctx context.Context) {
 
 // startup is called when the app starts. The context is saved
 // so we can call the runtime methods
-func (a *App) SetBrowser(name string) error {
-    if name == "" {
-		return errors.New("Missing information")
-    }
-	backend.BrowserName = name
-    fmt.Println(backend.BrowserName)
-	return nil
-}
