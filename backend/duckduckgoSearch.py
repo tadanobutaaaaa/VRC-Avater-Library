@@ -1,6 +1,8 @@
 from duckduckgo_search import DDGS
 from duckduckgo_search.exceptions import DuckDuckGoSearchException, RatelimitException
 from fastapi import HTTPException
+from searchIcons import SearchIcons
+import os
 import time
 
 def duckduckgo_search(pathName_list):
@@ -9,15 +11,16 @@ def duckduckgo_search(pathName_list):
             for data in pathName_list:
                 try:
                     results = ddgs.text(
-                        keywords=f'{data["path"]} site:booth.pm',
+                        keywords=f'{data["path"]} site:booth.pm/ja/items/',
                         region='wt-wt',
                         safesearch='on',
                         timelimit=None,
                         max_results=1
                     )
                     data['url'] = results[0]["href"]
-                    print(f'{data["path"]} site:booth.pm',)
-                    time.sleep(3)
+                    print(f'{data["path"]} site:booth.pm/ja/items/',)
+                    SearchIcons(data['url'], data['path'], data['fullPath'])
+                    time.sleep(10)
                 except RatelimitException as e:
                     print(f"エラーが発生しました: {e}")
                     raise HTTPException(status_code=429, detail="Rate limit exceeded",)
