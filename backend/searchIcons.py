@@ -1,7 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
 from PIL import Image
-import winreg as reg
 import shutil
 import os
 
@@ -62,7 +61,6 @@ def settingFolderIcon(filePath, fileName, fullPath, movedFolderPath):
     desktopIniPath = os.path.join(movedFolderPath, 'desktop.ini')
     with open(desktopIniPath, 'w') as f:
         f.write(f'[.ShellClassInfo]\nIconResource="{icoFileName}",0\n')
-        # f.write('[ViewState]\nMode=\nVid=\nFolderType=Generic')
     
     os.system(f'attrib +h {desktopIniPath}')
     os.system(f'attrib +s {movedFolderPath}')

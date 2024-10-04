@@ -1,13 +1,26 @@
-package main
+package backend
 
 import (
 	"bytes"
 	"fmt"
 	"net/http"
 	"io"
+	"os/exec"
+	"os"
 )
 
 func PostServer() string {
+
+	cmd := exec.Command("uvicorn", "main:app", "--reload")
+	cmd.Stderr = os.Stderr
+	err := cmd.Start()
+	if err != nil {
+		fmt.Println("コマンドの開始中にエラーが発生しました:", err)
+		os.Exit(1)
+	}
+
+	fmt.Println("FastAPIのサーバーが起動しました。")
+
 	url := "http://127.0.0.1:8000/duckduckgo" //指定されたブラウザによって変える
 
 	data := Match()
@@ -31,9 +44,10 @@ func PostServer() string {
 	body, _ := io.ReadAll(res.Body)
 	fmt.Println("response Body", string(body))
 
+	err = cmd.Wait()
+	if err != nil{
+		fmt.Println("サーバーの実行中にエラーが発生しました:", err)
+	}
+	
 	return string(body)
-}
-
-func main() {
-	PostServer()
 }

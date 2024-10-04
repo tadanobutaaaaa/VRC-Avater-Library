@@ -11,8 +11,9 @@ import {
 function MainContent ({ overflowY = "scroll", ...props }) {
 
     return (
-        <TableContainer 
-        m={5}
+        <TableContainer
+        mx="60px"
+        my="30px"
         h="65vh"
         border="1px solid"
         borderRadius="8px"

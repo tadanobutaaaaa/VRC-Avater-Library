@@ -20,7 +20,7 @@ def duckduckgo_search(pathName_list):
                     data['url'] = results[0]["href"]
                     print(f'{data["path"]} site:booth.pm/ja/items/',)
                     SearchIcons(data['url'], data['path'], data['fullPath'])
-                    time.sleep(10)
+                    time.sleep(15)
                 except RatelimitException as e:
                     print(f"エラーが発生しました: {e}")
                     raise HTTPException(status_code=429, detail="Rate limit exceeded",)

@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	// "VRC-Avater-Library/backend"
 )
 
 // App struct
@@ -18,6 +19,8 @@ func NewApp() *App {
 func (a *App) startup(ctx context.Context) {
 	a.ctx = ctx
 }
+
+// func (a * App) FileManeger
 
 // startup is called when the app starts. The context is saved
 // so we can call the runtime methods
