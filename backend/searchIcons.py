@@ -5,28 +5,31 @@ import shutil
 import os
 
 def downloadImages(url, iconName, fullPath):
-    movedFolderPath = makeUnitypackageFile(fullPath)
+    #movedFolderPath = makeUnitypackageFile(fullPath)
+    if not os.path.isdir('Images'):
+        os.mkdir('Images')
     
     response = requests.get(url)
     image = response.content
     fileName = iconName + '.jpg'
-    folderPath = './Avaters/'
+    folderPath = './Images/'
     filePath = os.path.join(folderPath, fileName)
     
     with open(filePath, 'wb') as file:
         file.write(image)
     
-    settingFolderIcon(filePath, fileName, fullPath, movedFolderPath)
+    # settingFolderIcon(filePath, fileName, fullPath, movedFolderPath)
 
 def SearchIcons(url, iconName, fullPath):
-    movedFolderPath = makeUnitypackageFile(fullPath)
-    
+    # movedFolderPath = makeUnitypackageFile(fullPath)
+    if not os.path.isdir('Images'):
+        os.mkdir('Images')
     
     fileName = iconName + '.jpg'
     response = requests.get(url)
     html = response.text
     soup = BeautifulSoup(html, 'html.parser')
-    folderPath = './Avaters/'
+    folderPath = './Images/'
     
     imageElements= soup.find('img', class_='market-item-detail-item-image')
     
@@ -37,8 +40,8 @@ def SearchIcons(url, iconName, fullPath):
     with open(filePath, 'wb') as file:
         file.write(image)
     
-    settingFolderIcon(filePath, fileName, fullPath, movedFolderPath)
-
+    # settingFolderIcon(filePath, fileName, fullPath, movedFolderPath)
+"""
 def makeUnitypackageFile(fullPath):
     avatars_dir = os.path.join(os.getcwd(), 'Avaters')
     if not os.path.isdir('Avaters'):
@@ -47,7 +50,9 @@ def makeUnitypackageFile(fullPath):
     movedFolderPath = os.path.join(avatars_dir, unityPackageFile)
     shutil.move(fullPath, movedFolderPath)
     return movedFolderPath
+"""
 
+"""
 def settingFolderIcon(filePath, fileName, fullPath, movedFolderPath):
     folderPath = './Avaters/' + os.path.basename(fullPath)
     img =Image.open(filePath)
@@ -66,4 +71,4 @@ def settingFolderIcon(filePath, fileName, fullPath, movedFolderPath):
     os.system(f'attrib +s {movedFolderPath}')
     
     print("フォルダーのアイコンを変更しました。")
-
+"""

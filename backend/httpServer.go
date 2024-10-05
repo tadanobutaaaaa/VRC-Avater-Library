@@ -21,7 +21,7 @@ func PostServer() string {
 
 	fmt.Println("FastAPIのサーバーが起動しました。")
 
-	url := "http://127.0.0.1:8000/duckduckgo" //指定されたブラウザによって変える
+	url := "http://127.0.0.1:8000/google" //指定されたブラウザによって変える
 
 	data := Match()
 	var jsonData = []byte(data)
