@@ -1,10 +1,10 @@
 import requests
 from bs4 import BeautifulSoup
-from PIL import Image
-import shutil
+# from PIL import Image
+# import shutil
 import os
 
-def downloadImages(url, iconName, fullPath):
+def downloadImages(url, iconName):
     #movedFolderPath = makeUnitypackageFile(fullPath)
     if not os.path.isdir('Images'):
         os.mkdir('Images')
@@ -20,7 +20,7 @@ def downloadImages(url, iconName, fullPath):
     
     # settingFolderIcon(filePath, fileName, fullPath, movedFolderPath)
 
-def SearchIcons(url, iconName, fullPath):
+def SearchIcons(url, iconName):
     # movedFolderPath = makeUnitypackageFile(fullPath)
     if not os.path.isdir('Images'):
         os.mkdir('Images')

@@ -1,3 +1,3 @@
-module github.com/tadanobutaaaaa/vrc-avatar-library
+module vrc_avater_library
 
-go 1.22.6
+go 1.23.1

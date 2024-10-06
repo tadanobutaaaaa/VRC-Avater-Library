@@ -2,7 +2,7 @@ package main
 
 import (
 	"context"
-	// "VRC-Avater-Library/backend"
+	"vrc_avater_library/backend"
 )
 
 // App struct
@@ -20,7 +20,9 @@ func (a *App) startup(ctx context.Context) {
 	a.ctx = ctx
 }
 
-// func (a * App) FileManeger
+func (a *App) FileManeger(apiName string) string {
+	return backend.PostServer(apiName)
+}
 
 // startup is called when the app starts. The context is saved
 // so we can call the runtime methods

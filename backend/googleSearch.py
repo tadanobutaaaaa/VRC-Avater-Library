@@ -18,7 +18,7 @@ def google_search(pathName_list):
         results = response.json()
         data['url'] = results['items'][0]['formattedUrl']
 
-        downloadImages(results['items'][0]['pagemap']['metatags'][0]['og:image'], data['path'], data['fullPath'])
+        downloadImages(results['items'][0]['pagemap']['metatags'][0]['og:image'], data['path'])
         time.sleep(2)
     print(pathName_list)
     return pathName_list

@@ -1,4 +1,4 @@
-module VRC-Avater-Library
+module vrc_avater_library
 
 go 1.21
 

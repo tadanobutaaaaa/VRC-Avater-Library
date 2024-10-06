@@ -7,10 +7,10 @@ import (
 	"io"
 	"os/exec"
 	"os"
+	"time"
 )
 
-func PostServer() string {
-
+func PostServer(apiName string) string {
 	cmd := exec.Command("uvicorn", "main:app", "--reload")
 	cmd.Stderr = os.Stderr
 	err := cmd.Start()
@@ -19,9 +19,10 @@ func PostServer() string {
 		os.Exit(1)
 	}
 
+	time.Sleep(3 * time.Second)
 	fmt.Println("FastAPIのサーバーが起動しました。")
 
-	url := "http://127.0.0.1:8000/google" //指定されたブラウザによって変える
+	url := "http://127.0.0.1:8000/" + apiName //指定されたブラウザによって変える
 
 	data := Match()
 	var jsonData = []byte(data)

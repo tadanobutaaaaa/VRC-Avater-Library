@@ -16,7 +16,7 @@ type Data struct {
 	FullPath string `json:"fullPath"`
 }
 
-func userName() string {
+func UserName() string {
 	user, err := user.Current()
 	if err != nil {
 		log.Fatalf("Error: %v", err)
@@ -24,11 +24,18 @@ func userName() string {
 	return user.HomeDir
 }
 
-func cleanFileName(s string) string {
+func CleanFileName(s string) string {
 	re := regexp.MustCompile(`(_ver|ver|_)\d+(\.\d+)*|\.unitypackage$`)
 	cleaned := re.ReplaceAllString(s, "")
 	cleaned = strings.Replace(cleaned, "_", " " , -1)
 	return cleaned
+}
+
+func GetFilePath(fullPath string) string {
+	splitPath := strings.SplitN(fullPath, "Downloads", 2)
+	afterDownloads := strings.TrimLeft(splitPath[1], string(filepath.Separator))
+	folders := strings.Split(afterDownloads, string(filepath.Separator))
+	return filepath.Join(splitPath[0], "Downloads", folders[0])
 }
 
 func Match() string{
@@ -37,7 +44,7 @@ func Match() string{
 	paths := []string{}
 	fullPaths := []string{}
 
-	userHome := userName()
+	userHome := UserName()
 	download := filepath.Join(userHome, "Downloads")
 	err := filepath.WalkDir(download, func(path string, info os.DirEntry, err error) error {
 		if err != nil {
@@ -45,9 +52,9 @@ func Match() string{
 		}
 
 		if !info.IsDir() && filepath.Ext(path) == ".unitypackage" {
-			basePath := cleanFileName(filepath.Base(path))
+			basePath := CleanFileName(filepath.Base(path))
 			paths = append(paths, basePath)
-			fullPaths = append(fullPaths, getFilePath(path))
+			fullPaths = append(fullPaths, GetFilePath(path))
 		}
 		return nil
 
@@ -71,11 +78,4 @@ func Match() string{
 		return ""
 	}
 	return string(jsonData)
-}
-
-func getFilePath(fullPath string) string {
-	splitPath := strings.SplitN(fullPath, "Downloads", 2)
-	afterDownloads := strings.TrimLeft(splitPath[1], `\/`)
-	folders := strings.Split(afterDownloads, `\`)
-	return splitPath[0] + "Downloads\\" + folders[0]
 }

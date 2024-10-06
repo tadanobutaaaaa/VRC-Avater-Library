@@ -19,7 +19,7 @@ def duckduckgo_search(pathName_list):
                     )
                     data['url'] = results[0]["href"]
                     print(f'{data["path"]} site:booth.pm/ja/items/',)
-                    SearchIcons(data['url'], data['path'], data['fullPath'])
+                    SearchIcons(data['url'], data['path'])
                     time.sleep(15)
                 except RatelimitException as e:
                     print(f"エラーが発生しました: {e}")
