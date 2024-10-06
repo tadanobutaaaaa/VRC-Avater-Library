@@ -1,6 +1,5 @@
 import requests
 import time
-import os
 from searchIcons import downloadImages
 
 API_KEY = 'AIzaSyAVo_XnZjhwHaWOMzlOVqxFpyd0dmzm6zk'

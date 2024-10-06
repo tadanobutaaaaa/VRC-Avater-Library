@@ -1,38 +1,36 @@
-import React, { useState } from 'react';
+import React, { useState, createContext } from 'react';
 import { Button, Center, Box, Flex, Select } from '@chakra-ui/react';
 import { Link } from "react-router-dom";
 import Header from '../components/Header';
 import MainContent from '../components/MainContent';
+import {FileManeger} from "../../wailsjs/go/main/App";
+
+export const fileSearchResult = createContext()
 
 function App() {
-    const [selectedValue, setselectedValue] = useState("")
-    const changeValue = (e) => {
-        setselectedValue(e.target.value);
-    }
+    const [selectedValue, setselectedValue] = useState("google")
+    const [fileManagerResult, setFileManagerResult] = useState("")
 
-    const handleClick = () => {
-        SetBrowser(selectedValue)
-        .then(() => {
-            console.log("Login Successful");
-        }).catch((err) => {
-            console.log(err);
-        })
+    const changeValue = (e) => setselectedValue(e.target.value)
+    const updatefileManagerResult = (result) => setFileManagerResult(result)
+
+    function fileManager() {
+        FileManeger(selectedValue).then(updatefileManagerResult)
     }
     return (
-        <>
+        <FileSearchContext.Provider value={fileManagerResult}>
             <Header />
                 <Box>
                     <Flex justifyContent="flex-end">
                         <Select 
-                            placeholder="お好みの検索方法を選んでください"
                             w={335}
                             mt={3}
                             mr={5}
                             border="1px solid"
                             onChange={changeValue}
                         >
-                            <option value="Chrome">Google</option>
-                            <option value="Edge">DuckDuckGo(非推奨)</option>
+                            <option value="google">Google</option>
+                            <option value="duckduckgo">DuckDuckGo(非推奨)</option>
                         </Select>
                     </Flex>
                 </Box>
@@ -42,13 +40,13 @@ function App() {
                         <Center>
                             <Button 
                             colorScheme="teal"
-                            onClick={handleClick}
+                            onClick={fileManager}
                             >処理を開始する
                             </Button> 
                         </Center> 
                     </Link>
                 </Box>
-        </>
+        </FileSearchContext.Provider>
     );
 }
 

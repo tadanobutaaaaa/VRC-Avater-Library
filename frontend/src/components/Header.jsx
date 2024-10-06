@@ -9,9 +9,7 @@ function Header () {
     return (
         <Flex alignItems="center" justifyContent="center" bg="teal.400" p={6} position="relative">
             <Box textAlign="center">
-                <Link to="/">
-                    <Heading>VRC Avater Library</Heading>
-                </Link>
+                <Heading>VRC Avater Library</Heading>
             </Box>
             
             <HStack spacing="25px" position="absolute" right={7}>

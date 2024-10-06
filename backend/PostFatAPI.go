@@ -11,6 +11,7 @@ import (
 )
 
 func PostServer(apiName string) string {
+
 	cmd := exec.Command("uvicorn", "main:app", "--reload")
 	cmd.Stderr = os.Stderr
 	err := cmd.Start()
@@ -19,7 +20,7 @@ func PostServer(apiName string) string {
 		os.Exit(1)
 	}
 
-	time.Sleep(3 * time.Second)
+	time.Sleep(4 * time.Second)
 	fmt.Println("FastAPIのサーバーが起動しました。")
 
 	url := "http://127.0.0.1:8000/" + apiName //指定されたブラウザによって変える
@@ -44,7 +45,7 @@ func PostServer(apiName string) string {
 	fmt.Println("response Headers:", res.Header)
 	body, _ := io.ReadAll(res.Body)
 	fmt.Println("response Body", string(body))
-
+	fmt.Println(url)
 	err = cmd.Wait()
 	if err != nil{
 		fmt.Println("サーバーの実行中にエラーが発生しました:", err)
